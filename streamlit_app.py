@@ -27,10 +27,11 @@ try:
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" +fruit_choice)
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     streamlit.dataframe(fruityvice_normalized)
+except URLError as e:
+   streamlit.error()
 
-expect URLError as e:
-  streamlit.error()
-streamlit.stop()
+   
+ streamlit.stop()
 #import snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
